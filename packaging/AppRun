@@ -1,0 +1,12 @@
+#!/bin/sh
+HERE="$(dirname "$(readlink -f "$0")")"
+case "$1" in
+    --install-udev)
+        RULE="$HERE/usr/share/wireless-battery/70-wireless-battery.rules"
+        echo "Installing the udev rule (asks for your password)..."
+        pkexec sh -c "cp '$RULE' /etc/udev/rules.d/70-wireless-battery.rules && udevadm control --reload-rules && udevadm trigger --subsystem-match=hidraw --subsystem-match=tty --action=change" \
+            && echo "Done. If a dongle is still not readable, unplug and re-plug it."
+        exit $?
+        ;;
+esac
+exec "$HERE/usr/bin/wireless-battery" "$@"

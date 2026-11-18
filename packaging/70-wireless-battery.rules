@@ -1,0 +1,6 @@
+# Lets the logged-in user read the battery of supported wireless dongles (read-only protocol queries).
+# "uaccess" grants access to the active local session through an ACL, no group membership needed.
+# Keep the vendor list in sync with kUdevVendors in src/linux/main_linux.cpp.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03f0|0951|046d|04a5|054c|0b05|0bda|1038|1532|1b1c|1d57|248a|249a|24ae|2516|258a|33e4|3434|3537|3554|3710|373b|373e|3770|37b0|3151|0db0|145f|14a5|25aa|342d|347a|374a|379a|38a9|38ee|391d", TAG+="uaccess"
+# ATK N9 Pro headset: virtual serial port
+SUBSYSTEM=="tty", KERNEL=="ttyACM*", ATTRS{idVendor}=="373b", TAG+="uaccess"

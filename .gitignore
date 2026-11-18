@@ -1,0 +1,10 @@
+build/
+*.exe
+*.o
+dist/
+third_party/
+.claude/
+CLAUDE.md
+build/
+wireless-battery
+*.AppImage
