@@ -1,0 +1,29 @@
+app-id: io.github.itssambz.OnDeckJuice
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: wireless-battery
+finish-args:
+  # HID and serial device access to query dongles, mice, headsets, keyboards, and controllers
+  - --device=all
+  # StatusNotifierItem tray protocol
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.kde.StatusNotifierItem-*
+  # Desktop notifications for low battery warnings
+  - --talk-name=org.freedesktop.Notifications
+  # Sleep / wake detection via systemd-logind
+  - --system-talk-name=org.freedesktop.login1
+
+modules:
+  - name: ondeck-juice
+    buildsystem: simple
+    build-commands:
+      - make -j$FLATPAK_BUILDER_N_JOBS
+      - install -Dm755 wireless-battery /app/bin/wireless-battery
+      - ln -sf wireless-battery /app/bin/ondeck-juice
+      - install -Dm644 packaging/wireless-battery.svg /app/share/icons/hicolor/scalable/apps/io.github.itssambz.OnDeckJuice.svg
+      - install -Dm644 packaging/flatpak/io.github.itssambz.OnDeckJuice.desktop /app/share/applications/io.github.itssambz.OnDeckJuice.desktop
+      - install -Dm644 packaging/flatpak/io.github.itssambz.OnDeckJuice.metainfo.xml /app/share/metainfo/io.github.itssambz.OnDeckJuice.metainfo.xml
+    sources:
+      - type: dir
+        path: ../..

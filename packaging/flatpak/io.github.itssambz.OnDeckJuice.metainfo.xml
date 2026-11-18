@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.itssambz.OnDeckJuice</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>OnDeck Juice</name>
+  <summary>Battery levels of wireless mice, headsets, keyboards and controllers</summary>
+
+  <description>
+    <p>
+      OnDeck-Juice is a lightweight tray application for Linux that reads the battery
+      percentage of wireless mice, headsets, keyboards, and controllers directly via HID
+      protocols and displays them as a StatusNotifierItem in your panel.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.itssambz.OnDeckJuice.desktop</launchable>
+
+  <url type="homepage">https://github.com/itsSamBz/OnDeck-Juice</url>
+  <url type="bugtracker">https://github.com/itsSamBz/OnDeck-Juice/issues</url>
+
+  <provides>
+    <binary>wireless-battery</binary>
+    <binary>ondeck-juice</binary>
+  </provides>
+
+  <releases>
+    <release version="1.0.0" date="2026-11-18"/>
+  </releases>
+</component>

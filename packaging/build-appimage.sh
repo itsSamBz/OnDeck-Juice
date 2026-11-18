@@ -35,4 +35,7 @@ fi
 rm -f "WirelessBattery-$ARCH.AppImage"  # unlinking works even while the old one is running
 # --appimage-extract-and-run: works without FUSE
 ARCH="$ARCH" "$TOOL" --appimage-extract-and-run build/AppDir "WirelessBattery-$ARCH.AppImage"
-echo "Built WirelessBattery-$ARCH.AppImage"
+mkdir -p dist
+cp -f "WirelessBattery-$ARCH.AppImage" "dist/WirelessBattery-$ARCH.AppImage"
+cp -f "WirelessBattery-$ARCH.AppImage" "dist/OnDeck-Juice-$ARCH.AppImage"
+echo "Built WirelessBattery-$ARCH.AppImage and dist/OnDeck-Juice-$ARCH.AppImage"

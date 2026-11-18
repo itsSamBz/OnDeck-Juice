@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=OnDeck Juice
+GenericName=Wireless Battery Monitor
+Comment=Battery levels of wireless mice, headsets, keyboards and controllers
+Exec=wireless-battery
+Icon=io.github.itssambz.OnDeckJuice
+Terminal=false
+Categories=Utility;HardwareSettings;
+Keywords=battery;wireless;headset;mouse;keyboard;gamepad;
+StartupNotify=false

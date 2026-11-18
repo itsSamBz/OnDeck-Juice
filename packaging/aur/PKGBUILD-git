@@ -1,0 +1,55 @@
+# Maintainer: itsSamBz <https://github.com/itsSamBz/OnDeck-Juice>
+pkgname=ondeck-juice-git
+pkgver=r1.0.0
+pkgrel=1
+pkgdesc="Battery levels of wireless mice, headsets, keyboards and controllers on Linux (development branch)"
+arch=('x86_64')
+url="https://github.com/itsSamBz/OnDeck-Juice"
+license=('GPL-3.0-or-later')
+depends=('glib2' 'systemd-libs')
+makedepends=('git' 'gcc' 'make' 'pkgconf')
+provides=('ondeck-juice' 'wireless-battery')
+conflicts=('ondeck-juice' 'wireless-battery')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "OnDeck-Juice"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "OnDeck-Juice"
+    make
+}
+
+check() {
+    cd "OnDeck-Juice"
+    make test
+}
+
+package() {
+    cd "OnDeck-Juice"
+    install -Dm755 wireless-battery "$pkgdir/usr/bin/wireless-battery"
+    ln -sf wireless-battery "$pkgdir/usr/bin/ondeck-juice"
+
+    install -Dm644 packaging/wireless-battery.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/wireless-battery.svg"
+    ln -sf wireless-battery.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/ondeck-juice.svg"
+
+    install -Dm644 packaging/70-wireless-battery.rules "$pkgdir/usr/lib/udev/rules.d/70-wireless-battery.rules"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+    install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/wireless-battery.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=OnDeck Juice
+GenericName=Wireless Battery Monitor
+Comment=Battery levels of wireless mice, headsets, keyboards and controllers
+Exec=wireless-battery
+Icon=wireless-battery
+Terminal=false
+Categories=Utility;HardwareSettings;
+Keywords=battery;wireless;headset;mouse;keyboard;gamepad;
+StartupNotify=false
+EOF
+}
