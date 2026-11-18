@@ -26,9 +26,9 @@ Pre-built packages for all major distributions are available on the **[Releases]
 ### 1. AppImage (Universal)
 Works on any modern Linux distribution without installation:
 ```bash
-chmod +x WirelessBattery-x86_64.AppImage
-./WirelessBattery-x86_64.AppImage --install-udev   # One-time setup for device permissions
-./WirelessBattery-x86_64.AppImage
+chmod +x OnDeck-Juice-x86_64.AppImage
+./OnDeck-Juice-x86_64.AppImage --install-udev   # One-time setup for device permissions
+./OnDeck-Juice-x86_64.AppImage
 ```
 
 ### 2. Debian / Ubuntu (`.deb`)

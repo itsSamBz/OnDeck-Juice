@@ -11,10 +11,11 @@ install -m 755 wireless-battery build/AppDir/usr/bin/
 install -m 755 packaging/AppRun build/AppDir/AppRun
 install -m 644 packaging/70-wireless-battery.rules build/AppDir/usr/share/wireless-battery/
 install -m 644 packaging/wireless-battery.svg build/AppDir/wireless-battery.svg
+cp build/AppDir/wireless-battery.svg build/AppDir/.DirIcon
 cat > build/AppDir/wireless-battery.desktop <<EOF
 [Desktop Entry]
 Type=Application
-Name=Wireless Battery
+Name=OnDeck Juice
 Comment=Battery levels of wireless mice, headsets, keyboards and controllers
 Exec=AppRun
 Icon=wireless-battery
@@ -32,10 +33,8 @@ if [ -z "$TOOL" ]; then
         chmod +x "$TOOL"
     fi
 fi
-rm -f "WirelessBattery-$ARCH.AppImage"  # unlinking works even while the old one is running
+rm -f "dist/OnDeck-Juice-$ARCH.AppImage"
 # --appimage-extract-and-run: works without FUSE
-ARCH="$ARCH" "$TOOL" --appimage-extract-and-run build/AppDir "WirelessBattery-$ARCH.AppImage"
 mkdir -p dist
-cp -f "WirelessBattery-$ARCH.AppImage" "dist/WirelessBattery-$ARCH.AppImage"
-cp -f "WirelessBattery-$ARCH.AppImage" "dist/OnDeck-Juice-$ARCH.AppImage"
-echo "Built WirelessBattery-$ARCH.AppImage and dist/OnDeck-Juice-$ARCH.AppImage"
+ARCH="$ARCH" "$TOOL" --appimage-extract-and-run build/AppDir "dist/OnDeck-Juice-$ARCH.AppImage"
+echo "Built dist/OnDeck-Juice-$ARCH.AppImage"

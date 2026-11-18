@@ -8,3 +8,5 @@ CLAUDE.md
 build/
 wireless-battery
 *.AppImage
+config.bat
+node_modules
